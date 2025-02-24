@@ -34,7 +34,7 @@ export default function RootLayout() {
         <Stack.Screen name="pin" options={{ headerShown: false }} />
         <Stack.Screen name="verify" options={{ title: "Verify Code" }} />
         <Stack.Screen name="success" options={{ headerShown: false }} />
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="(home)" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" />
       </Stack>
       <StatusBar style="auto" />
