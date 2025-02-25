@@ -1,12 +1,13 @@
 import { Tabs } from "expo-router";
 import React from "react";
-import { Platform, View } from "react-native";
+import { Image, Platform, View } from "react-native";
 
 import { HapticTab } from "@/components/HapticTab";
 import { IconSymbol } from "@/components/ui/IconSymbol";
 import TabBarBackground from "@/components/ui/TabBarBackground";
 import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
+import { AddIcon, CartIcon, HomeIcon, NotificationIcon, UserIcon } from "@/constants/icons";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -31,34 +32,30 @@ export default function TabLayout() {
         name="index"
         options={{
           title: "Home",
-          tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="house.fill" color={"#111"} />
-          ),
+          tabBarIcon: ({ color }) => <Image source={HomeIcon} />,
         }}
       />
       <Tabs.Screen
         name="notification"
         options={{
           title: "Notification",
-          tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="house.fill" color={"#111"} />
-          ),
+          tabBarIcon: ({ color }) => <Image source={NotificationIcon} />,
         }}
       />
       <Tabs.Screen
         name="add"
         options={{
-          title: "Home",
+          title: "",
           tabBarIcon: ({ color }) => (
             <View
               className=""
               style={{
-                top: Platform.OS == "ios" ? -10 : -20,
-                width: Platform.OS == "ios" ? 50 : 60,
-                height: Platform.OS == "ios" ? 50 : 60,
+                top: Platform.OS == "ios" ? -10 : -10,
+                // width: Platform.OS == "ios" ? 50 : 50,
+                // height: Platform.OS == "ios" ? 50 : 50,
               }}
             >
-              <IconSymbol size={28} name="plus.square.fill" color={"#111"} />
+              <Image source={AddIcon} />
             </View>
           ),
         }}
@@ -66,28 +63,16 @@ export default function TabLayout() {
       <Tabs.Screen
         name="cart"
         options={{
-          title: "Home",
-          tabBarIcon: ({ color }) => (
-            <View
-              className=""
-              style={{
-                top: Platform.OS == "ios" ? -10 : -20,
-                width: Platform.OS == "ios" ? 50 : 60,
-                height: Platform.OS == "ios" ? 50 : 60,
-              }}
-            >
-              <IconSymbol size={28} name="house.fill" color={"#111"} />
-            </View>
-          ),
+          title: "Cart",
+          tabBarIcon: ({ color }) => <Image source={CartIcon} />,
         }}
       />
+
       <Tabs.Screen
         name="explore"
         options={{
           title: "Profile",
-          tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="paperplane.fill" color={color} />
-          ),
+          tabBarIcon: ({ color }) => <Image source={UserIcon} />,
         }}
       />
     </Tabs>

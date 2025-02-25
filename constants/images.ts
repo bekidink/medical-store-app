@@ -13,6 +13,7 @@ const Category2 = require("../assets/images/category2.png");
 const Category3 = require("../assets/images/category3.png");
 const Product1 = require("../assets/images/product_image.png");
 const Product2 = require("../assets/images/image 21.png");
+const PaymentMethod = require("../assets/images/imgae_section.png");
 export {
   Logobg,
   SuccessBg,
@@ -29,4 +30,5 @@ export {
   Category2,
   Product1,
   Product2,
+  PaymentMethod,
 };

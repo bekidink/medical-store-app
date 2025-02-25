@@ -35,6 +35,9 @@ export default function RootLayout() {
         <Stack.Screen name="verify" options={{ title: "Verify Code" }} />
         <Stack.Screen name="success" options={{ headerShown: false }} />
         <Stack.Screen name="(home)" options={{ headerShown: false }} />
+        <Stack.Screen name="checkout" options={{ title: "Checkout" }} />
+        <Stack.Screen name="complete" options={{ headerShown: false }} />
+        <Stack.Screen name="product/[slug]" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" />
       </Stack>
       <StatusBar style="auto" />

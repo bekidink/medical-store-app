@@ -6,6 +6,7 @@ import {
   Text,
   TextInput,
   ScrollView,
+  Pressable,
 } from "react-native";
 
 import { HelloWave } from "@/components/HelloWave";
@@ -18,6 +19,7 @@ import { useState } from "react";
 import { services } from "@/services";
 import { FlashList } from "@shopify/flash-list";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
+import { useRouter } from "expo-router";
 const DATA = [
   {
     title: "Accu-check Active",
@@ -54,7 +56,7 @@ export default function HomeScreen() {
   const handleSearch = (text: string) => {
     setSearchQuery(text);
   };
-
+const navigation=useRouter()
   return (
     <View className="flex-1">
       <Image
@@ -102,7 +104,7 @@ export default function HomeScreen() {
           <FlashList
             data={DATA}
             renderItem={({ item }) => (
-              <View className="flex-1 shadow-xl bg-[#F3F4F5]">
+              <Pressable className="flex-1 shadow-xl bg-[#F3F4F5]" onPress={()=>navigation.navigate("product/slug" as never)} >
                 <View className="items-center justify-center">
                   <Image source={item.bg} />
                 </View>
@@ -112,12 +114,13 @@ export default function HomeScreen() {
                   RS.{item.price}
                 </Text>
                 <View className=" flex-row items-center absolute bottom-0 bg-[#FFC000] py-[0.5] gap-x-1 right-2 w-10 rounded-l-full">
-                  <FontAwesome5 name="star" size={10} color="white" />{" "}
+                  <FontAwesome5 name="star" size={10} color="white" />
                   <Text className="text-white">{item.rating}</Text>
                 </View>
-              </View>
+              </Pressable>
             )}
             estimatedItemSize={200}
+            
             numColumns={2}
           />
         </View>
