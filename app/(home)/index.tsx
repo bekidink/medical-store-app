@@ -20,6 +20,7 @@ import { services } from "@/services";
 import { FlashList } from "@shopify/flash-list";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import { useRouter } from "expo-router";
+import { CartIcon } from "@/constants/icons";
 const DATA = [
   {
     title: "Accu-check Active",
@@ -56,19 +57,31 @@ export default function HomeScreen() {
   const handleSearch = (text: string) => {
     setSearchQuery(text);
   };
-const navigation=useRouter()
+  const navigation = useRouter();
   return (
     <View className="flex-1">
-      <Image
-        source={HomeBg}
-        className="w-full absolute top-0  right-0 left-0 z-[-1]"
-      />
+      <Pressable  onPress={()=>navigation.navigate("explore" as never)}>
+        <Image
+          source={HomeBg}
+          className="w-full absolute top-0  right-0 left-0 z-[-1]"
+        />
+      </Pressable>
+
       <View className="position top-10 mx-4">
         <View className="flex-row justify-between items-center">
           <Image source={UserBg} />
           <View className="flex-row gap-x-3">
-            <Ionicons name="notifications-sharp" size={24} color="black" />
-            <Ionicons name="notifications-sharp" size={24} color="black" />
+            <Pressable
+              onPress={() => navigation.navigate("notification" as never)}
+            >
+              <Ionicons name="notifications-sharp" size={24} color="white" />
+            </Pressable>
+            <Pressable
+              className=""
+              onPress={() => navigation.navigate("cart" as never)}
+            >
+              <Image source={CartIcon} />
+            </Pressable>
           </View>
         </View>
         <Text className="text-white text-lg mt-5">Hi,Kobeki</Text>
@@ -89,10 +102,15 @@ const navigation=useRouter()
         <Text className="text-secondary text-lg">Top Categories</Text>
         <View className="flex-row gap-x-9 mt-3 ">
           {services.map((item, i) => (
-            <View className="flex">
+            <Pressable
+              className="flex"
+              onPress={() =>
+                navigation.navigate(`category/${item.title}` as never)
+              }
+            >
               <Image source={item.bg} />
               <Text className="text-base text-secondary">{item.title}</Text>
-            </View>
+            </Pressable>
           ))}
         </View>
         <Image source={HomeAd1} className="w-full mt-2 rounded-xl " />
@@ -104,7 +122,12 @@ const navigation=useRouter()
           <FlashList
             data={DATA}
             renderItem={({ item }) => (
-              <Pressable className="flex-1 shadow-xl bg-[#F3F4F5]" onPress={()=>navigation.navigate("product/slug" as never)} >
+              <Pressable
+                className="flex-1 shadow-xl bg-[#F3F4F5]"
+                onPress={() =>
+                  navigation.navigate(`/product/${item.title}` as never)
+                }
+              >
                 <View className="items-center justify-center">
                   <Image source={item.bg} />
                 </View>
@@ -120,7 +143,6 @@ const navigation=useRouter()
               </Pressable>
             )}
             estimatedItemSize={200}
-            
             numColumns={2}
           />
         </View>

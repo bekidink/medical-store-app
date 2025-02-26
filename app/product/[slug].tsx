@@ -3,10 +3,13 @@ import { Image, Pressable, ScrollView, Text, View } from "react-native";
 import { useSharedValue } from "react-native-reanimated";
 import Carousel from "react-native-reanimated-carousel";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import { Stack, useLocalSearchParams } from "expo-router";
 export default function ProductDetails() {
   const scrollOffsetValue = useSharedValue<number>(0);
+   const { slug } = useLocalSearchParams<{ slug: string }>();
   return (
     <ScrollView className="flex-1 bg-white px-5 py-2">
+         <Stack.Screen options={{ title: slug }} />
       <Text className="text-primary text-lg">Sugar Free Gold Low Calories</Text>
       <Text>Etiam mollis metus non purus </Text>
       <View className="items-center p-3 bg-[#F8F8F8] roundee-xl">
@@ -67,7 +70,7 @@ export default function ProductDetails() {
           <Text>Something</Text>
         </View>
         <Pressable className="bg-primary items-center mb-5 mx-6 py-4 rounded-full">
-            <Text className="text-white text-lg uppercase">Go to Cart</Text>
+          <Text className="text-white text-lg uppercase">Go to Cart</Text>
         </Pressable>
       </View>
     </ScrollView>
